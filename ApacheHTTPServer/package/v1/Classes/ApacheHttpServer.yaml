@@ -54,7 +54,7 @@ Methods:
       - conf:Linux.runCommand($server.agent, $file)
       - If: $this.enablePHP
         Then:
-          - conf:Linux.runCommand($server.agent, "sudo apt-get -y install php5")
+          - conf:Linux.runCommand($server.agent, "sudo apt-get -y install php libapache2-mod-php")
 
   onCompleteConfiguration:
     Arguments:
@@ -74,4 +74,3 @@ Methods:
           )).select(format('http://{0}', $)).join(', ')
 
       - $this.find(std:Environment).require().reporter.report($this, format('Apache is available at {0}', $ips))
-
